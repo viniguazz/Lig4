@@ -9,7 +9,7 @@ The paradigm used is OOP.
 
 ## Classes
 
-The program consists of 4 classes: Administrador (Administrator), Arbitro (arbiter), Tabuleiro (Board) and Jogador (player).
+The program consists of 4 classes: Administrador (administrator), Arbitro (arbiter), Tabuleiro (board) and Jogador (player).
 
 
 * **Administrador**: greets the player, pics and handles the game mode, collects the player data;
