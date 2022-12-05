@@ -81,7 +81,7 @@ class Administrador():
             jogador1 = Jogador.Jogador(nome, 1, True)
             print('Digite o seu nome (jogador 2): ')
             nome = input('>>> ')
-            jogador2 = Jogador.Jogador(nome, 2, False)
+            jogador2 = Jogador.Jogador(nome, 2, True)
             os.system('cls')
             print()
             print()

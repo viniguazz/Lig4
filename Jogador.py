@@ -1,6 +1,4 @@
 
-
-
 class Jogador():
 
     def __init__(self, nome, numero, humano):

@@ -21,61 +21,70 @@ class Arbitro():
         coluna = jogada[1]
         jogador = jogada[2]
         indice = 0
+        horizontal = 0
+        vertical = 0
+
 
         #verificação horizontal
-        while indice < 7:
+        while indice < 7 and horizontal < 4:
             if tabuleiro[linha][indice] == jogador:
                 horizontal = horizontal + 1
             else:
                 horizontal = 0
             indice = indice + 1
+        
 
         indice = 0
 
         #verificação vertical
-        while indice < 6:
+        while indice < 6 and vertical < 4:
             if tabuleiro[indice][coluna] == jogador:
                 vertical = vertical + 1
             else:
                 vertical = 0
             indice = indice + 1
         
+
         indice = 0
 
         # verificação da diagonal esquerda
         i = linha
         j = coluna
         diagEsquerda = 0
-        while i >= 0 or j >= 0:
+        while i > 0 and j < 6:
             i = i - 1
             j = j + 1
 
-        while i <= 6 or j <= 7:
+        while i <= 5 and j >= 0  and diagEsquerda < 4:
             if tabuleiro[i][j] == jogador:
                 diagEsquerda = diagEsquerda + 1
             else:
                 diagEsquerda = 0
             i = i + 1
             j = j - 1
+        
 
+       
         # verificação da diagonal direita
         i = linha
         j = coluna
         diagDireita = 0
         
-        while i >= 0 or j >= 0:
+        while i > 0 and j > 0:
             i = i - 1
             j = j - 1
 
-        while i <= 6 or j <= 7:
+        while i <= 5 and j <= 6  and diagDireita < 4:
             if tabuleiro[i][j] == jogador:
-                diagEsq = diagEsq + 1
+                diagDireita = diagDireita + 1
             else:
                 diagDireita = 0
             i = i + 1
             j = j + 1
-   
-        if horizontal >= 0 or vertical >= 4 or diagEsq >= 4 or diagDireita >= 4:
+        
+
+        
+        if horizontal >= 4 or vertical >= 4 or diagEsquerda >= 4 or diagDireita >= 4:
             return True
         
         return False

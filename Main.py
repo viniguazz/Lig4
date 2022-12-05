@@ -1,53 +1,66 @@
 import os
 import Administrador
 import Tabuleiro
-import Jogador
 import Arbitro
 from time import sleep
 
-tabuleiro = Tabuleiro.Tabuleiro()
-adm = Administrador.Administrador()
-arbitro = Arbitro.Arbitro()
+sair = False
 
+while not sair:
 
-jogador1, jogador2 = adm.iniciarJogo(adm.intro())
-turno = arbitro.sorteio()
+    tabuleiro = Tabuleiro.Tabuleiro()
+    adm = Administrador.Administrador()
+    arbitro = Arbitro.Arbitro()
 
-jogada = 0
+    jogador1, jogador2 = adm.iniciarJogo(adm.intro())
+    turno = arbitro.sorteio()
 
-vencedor = False
+    jogada = 0
 
-while not vencedor and jogada != 42:
+    vencedor = False
 
-    if turno == 1:
-        os.system('cls')
-        print()
-        print()
-        print(f'############## Jogador 1 - {jogador1.nome} #################')
-        tabuleiro.printTabuleiro(tabuleiro.tabuleiro)
-        licito = tabuleiro.mudaTabuleiro(jogador1.numero)
-        while not licito[0]:
-            print('Jogada inválida! Tente novamente.')
-            licito = tabuleiro.mudaTabuleiro(jogador1.numero)
-        jogada = jogada + 1
-        turno = 2
+    while not vencedor and jogada != 42:
 
-    else:
-        os.system('cls')
-        print()
-        print()
-        print(f'############## Jogador 2 - {jogador2.nome} #################')
-        tabuleiro.printTabuleiro(tabuleiro.tabuleiro)
-        licito = tabuleiro.mudaTabuleiro(jogador2.numero)
-        while not licito[0]:
-            print('Jogada inválida! Tente novamente.')
-            licito = tabuleiro.mudaTabuleiro(jogador2.numero)
-        jogada = jogada + 1
-        turno = 1
-    
-    print(f'jogada numero {jogada}')
-    sleep(1)
+        if turno == 1:
+            os.system('cls')
+            print()
+            print()
+            print(f'############## Jogador 1 - {jogador1.nome} #################')
+            tabuleiro.printTabuleiro(tabuleiro.tabuleiro)
+            licito = tabuleiro.mudaTabuleiro(jogador1.numero, jogador1.humano)
+            while not licito[0]:
+                print('Jogada inválida! Tente novamente.')
+                licito = tabuleiro.mudaTabuleiro(jogador1.numero, jogador1.humano)
+            jogada = jogada + 1
+            turno = 2
 
-    #vencedor = arbitro.verificarVencedor([licito[1], licito[2], licito[3]], tabuleiro.tabuleiro)
+        else:
+            os.system('cls')
+            print()
+            print()
+            print(f'############## Jogador 2 - {jogador2.nome} #################')
+            tabuleiro.printTabuleiro(tabuleiro.tabuleiro)
+            licito = tabuleiro.mudaTabuleiro(jogador2.numero, jogador2.humano)
+            while not licito[0]:
+                print('Jogada inválida! Tente novamente.')
+                licito = tabuleiro.mudaTabuleiro(jogador2.numero, jogador2.humano)
+            jogada = jogada + 1
+            turno = 1
+        
+        print(f'jogada numero {jogada}')
+        sleep(0.5)
 
-print('cabô')
+        vencedor = arbitro.verificarVencedor([licito[1], licito[2], licito[3]], tabuleiro.tabuleiro)
+
+        if vencedor:
+            os.system('cls')
+            tabuleiro.printTabuleiro(tabuleiro.tabuleiro)
+
+    if licito[3] == 1:
+        print(f'Parabéns {jogador1.nome}! Você venceu!')
+    else: 
+        print(f'Parabéns {jogador2.nome}! Você venceu!')
+
+    continuar = input('Jogar novamente? Digite 1 e pressione ENTER. Digite qualquer outra tecla e pressione ENTER para sair.\n>>>')
+    if continuar != '1':
+        sair = True
