@@ -24,7 +24,9 @@ The program consists of 4 classes: Administrador (Administrator), Arbitro (arbit
 
 The Main.py document encases the main logic of the program.
 
-In the near future, I expect to overhaul interface and implement the minimax algorithm, in order to improve the AI.
+
+
+In the near future, I expect to overhaul the interface and implement the minimax algorithm, in order to improve the AI.
 
 Thank you for showing up and checking the (very simple and terribly written) code.
 
